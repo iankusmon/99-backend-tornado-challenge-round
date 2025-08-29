@@ -55,9 +55,9 @@ GET /listings
   ]
 }
 
-### Create a listing***
-
 ```
+
+### Create a listing***
 
 POST /listings
 Content-Type: application/x-www-form-urlencoded
