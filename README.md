@@ -185,21 +185,21 @@ Create a user
 
 ```
 
-curl -X POST http://localhost:8000/public-api/users \
+curl -X POST http://localhost:6002/public-api/users \
   -H "Content-Type: application/json" \
   -d '{"name": "John Doe"}'
 Create a listing
 
 ```
 
-curl -X POST http://localhost:8000/public-api/listings \
+curl -X POST http://localhost:6002/public-api/listings \
   -H "Content-Type: application/json" \
   -d '{"user_id": 1, "listing_type": "rent", "price": 4500}'
 Get listings
 
 ```
 
-curl "http://localhost:8000/public-api/listings?page_num=1&page_size=5"
+curl "http://localhost:6002/public-api/listings?page_num=1&page_size=5"
 Ping service
 
 ```
@@ -220,11 +220,11 @@ python listing_service.py --port=6000 --debug=true
 
 ```
 
-python user_service.py --port=7000 --debug=true
+python user_service.py --port=6001 --debug=true
 4. Run Public API Layer
 
 ```
 
-python public_api.py --port=8000 --debug=true
+python public_api.py --port=6002 --debug=true
 Submission Repository
 https://github.com/iankusmon/99-backend-tornado-challenge-round
