@@ -1,4 +1,4 @@
-# 99 Backend Tech Challenge – Tornado
+# Submission of 99 Backend Tech Challenge – Tornado
 
 This repository contains a backend tech challenge submission for 99 Group. The task is to build a **microservices-based system** that stores information about users and property listings. This solution uses **Python 3 and Tornado framework**.
 
@@ -57,8 +57,9 @@ GET /listings
 
 ```
 
-### Create a listing***
+### Create a listing
 
+```bash
 POST /listings
 Content-Type: application/x-www-form-urlencoded
 Parameters
@@ -69,10 +70,10 @@ listing_type (str, required, rent or sale)
 
 price (int, required)
 
-Response
+```
 
-json
 
+```json
 {
   "result": true,
   "listing": {
@@ -84,6 +85,9 @@ json
     "updated_at": 1675820997000000
   }
 }
+```
+
+```bash
 User Service
 User Object
 Field	Type	Description
@@ -91,21 +95,21 @@ id	int	Auto-generated
 name	str	Full name
 created_at	int	Timestamp
 updated_at	int	Timestamp
-
-Endpoints
-Get all users
-
 ```
 
+### Endpoints
+
+Get all users
+
+
+
+```bash
 GET /users?page_num=1&page_size=10
 Get specific user
 
-```
 
 GET /users/{id}
 Create user
-
-```
 
 POST /users
 Content-Type: application/x-www-form-urlencoded
@@ -119,7 +123,6 @@ Aggregates data from Listing and User services.
 Endpoints
 Get listings
 
-vbnet
 
 GET /public-api/listings
 Query Parameters
@@ -129,10 +132,12 @@ page_num (int, default=1)
 page_size (int, default=10)
 
 user_id (optional)
+```
 
-Response
+### Response
 
-json
+
+```json
 
 {
   "result": true,
@@ -152,6 +157,9 @@ json
     }
   ]
 }
+```
+
+```bash
 Create user
 
 pgsql
@@ -159,38 +167,50 @@ pgsql
 POST /public-api/users
 Content-Type: application/json
 Body
+```
 
-json
+```json
 
 {
   "name": "Lorel Ipsum"
 }
-Create listing
+```
 
-pgsql
+### Create listing
+
+```pgsql
 
 POST /public-api/listings
 Content-Type: application/json
+```
+
 Body
 
-json
+```json
 
 {
   "user_id": 1,
   "listing_type": "rent",
   "price": 6000
 }
-Testing with CURL
-Create a user
-
 ```
+
+
+### Testing with CURL
+
+
+### Create a user
+
+```bash
 
 curl -X POST http://localhost:6002/public-api/users \
   -H "Content-Type: application/json" \
   -d '{"name": "John Doe"}'
+```
+
 Create a listing
 
-```
+```bash
 
 curl -X POST http://localhost:6002/public-api/listings \
   -H "Content-Type: application/json" \
@@ -199,32 +219,43 @@ Get listings
 
 ```
 
+
+```bash
 curl "http://localhost:6002/public-api/listings?page_num=1&page_size=5"
 Ping service
 
 ```
 
+```bash
 curl http://localhost:6000/listings/ping
 Running the Services
 1. Install dependencies
 
 ```
 
+```bash
 pip install -r python-libs.txt
+```
 2. Run Listing Service
 
+```bash
+python listing_service.py --port=6000 --debug=true
 ```
 
-python listing_service.py --port=6000 --debug=true
 3. Run User Service
 
-```
+```bash
 
 python user_service.py --port=6001 --debug=true
-4. Run Public API Layer
-
 ```
 
+4. Run Public API Layer
+
+```bash
+
 python public_api.py --port=6002 --debug=true
-Submission Repository
+```
+
+
+### Submission Repository
 https://github.com/iankusmon/99-backend-tornado-challenge-round
