@@ -32,8 +32,6 @@ All services are REST-based and communicate via **JSON payloads**.
 GET /listings
 
 
-
-
 **Query Parameters**
 
 - `page_num` (int, default=1)  
@@ -56,9 +54,10 @@ GET /listings
     }
   ]
 }
-Create a listing
 
-bash
+### Create a listing***
+
+```
 
 POST /listings
 Content-Type: application/x-www-form-urlencoded
@@ -96,17 +95,17 @@ updated_at	int	Timestamp
 Endpoints
 Get all users
 
-bash
+```
 
 GET /users?page_num=1&page_size=10
 Get specific user
 
-bash
+```
 
 GET /users/{id}
 Create user
 
-bash
+```
 
 POST /users
 Content-Type: application/x-www-form-urlencoded
@@ -184,47 +183,47 @@ json
 Testing with CURL
 Create a user
 
-bash
+```
 
 curl -X POST http://localhost:8000/public-api/users \
   -H "Content-Type: application/json" \
   -d '{"name": "John Doe"}'
 Create a listing
 
-bash
+```
 
 curl -X POST http://localhost:8000/public-api/listings \
   -H "Content-Type: application/json" \
   -d '{"user_id": 1, "listing_type": "rent", "price": 4500}'
 Get listings
 
-bash
+```
 
 curl "http://localhost:8000/public-api/listings?page_num=1&page_size=5"
 Ping service
 
-bash
+```
 
 curl http://localhost:6000/listings/ping
 Running the Services
 1. Install dependencies
 
-bash
+```
 
 pip install -r python-libs.txt
 2. Run Listing Service
 
-bash
+```
 
 python listing_service.py --port=6000 --debug=true
 3. Run User Service
 
-bash
+```
 
 python user_service.py --port=7000 --debug=true
 4. Run Public API Layer
 
-bash
+```
 
 python public_api.py --port=8000 --debug=true
 Submission Repository
